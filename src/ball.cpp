@@ -3,7 +3,7 @@
 Ball::Ball(Vector2 position, float radius) {
   this->position = position;
   this->radius = radius;
-  velocity = (Vector2){0,0};
+  velocity = Vector2{0,0};
 }
 
 Ball::~Ball() {
