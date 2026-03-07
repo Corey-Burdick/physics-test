@@ -21,7 +21,7 @@ Vector2 Line::getNormalVector() {
   float dx = pos1.x - pos2.x;
   float dy = pos1.y - pos2.y;
 
-  float len = std::sqrtf(dx * dx + dy * dy);  
+  float len = std::sqrt(dx * dx + dy * dy);  
 
   return Vector2{-dy/len, dx/len};
 }

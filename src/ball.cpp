@@ -20,7 +20,7 @@ void Ball::update(float gravity) {
   position.y += velocity.y;
 
   if (velocity.x * velocity.x + velocity.y * velocity.y >= 100) {
-    float speed = std::sqrtf(velocity.x * velocity.x + velocity.y * velocity.y);
+    float speed = std::sqrt(velocity.x * velocity.x + velocity.y * velocity.y);
     velocity.x *= 10 / speed;
     velocity.y *= 10 / speed;
   }
