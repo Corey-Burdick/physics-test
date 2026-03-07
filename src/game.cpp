@@ -41,7 +41,7 @@ void Game::update() {
 
 void Game::draw() {
   //DrawRectangleLinesEx((Rectangle){offset, offset, worldWidth, worldHeight}, 5, WHITE);
-  std::cout << "Balls: " << activeBalls.size() << std::endl;
+  //std::cout << "Balls: " << activeBalls.size() << std::endl;
 
   for (auto& b : activeBalls) {
     b.draw();
@@ -54,6 +54,8 @@ void Game::draw() {
   if (isDrawingLine) {
     DrawLineV(lineStart, GetMousePosition(), GREEN);
   }
+
+  DrawFPS(10, 10);
 }
 
 void Game::checkLineBallCollision() {
@@ -68,7 +70,7 @@ void Game::checkLineBallCollision() {
           bool posSign = (l.getNormalVector().x * (b.position.x - l.pos1.x) + l.getNormalVector().y * (b.position.y - l.pos1.y)) < 0;
           bool velSign = (l.getNormalVector().x * b.velocity.x + l.getNormalVector().y * b.velocity.y) < 0;
           if (posSign != velSign) {
-            std::cout << "Contact." << std::endl;
+            //std::cout << "Contact." << std::endl;
             Vector2 TempV = b.velocity;
             b.velocity.x = b.velocity.x - 2 * (b.velocity.x * l.getNormalVector().x + b.velocity.y * l.getNormalVector().y) * l.getNormalVector().x;
             b.velocity.y = TempV.y - 2 * (TempV.x * l.getNormalVector().x + b.velocity.y * l.getNormalVector().y) * l.getNormalVector().y;
