@@ -30,6 +30,13 @@ void Game::update() {
       isDrawingLine = false;
     }
   } 
+  if (IsKeyPressed(KEY_C)) {
+    activeLines.clear();
+    activeLines.push_back(Line(Vector2{0, GetScreenHeight()}, Vector2{GetScreenWidth(), GetScreenHeight()}));
+    activeLines.push_back(Line(Vector2{0, 0}, Vector2{0, GetScreenHeight()}));
+    activeLines.push_back(Line(Vector2{GetScreenWidth(), 0}, Vector2{GetScreenWidth(), GetScreenHeight()}));
+    activeLines.push_back(Line(Vector2{0, 0}, Vector2{GetScreenWidth(), 0}));
+  }
 
   for (auto it = activeBalls.begin(); it != activeBalls.end();) {
     if (it->age >= 960) {
