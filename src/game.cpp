@@ -5,7 +5,10 @@ Game::Game() {
   worldWidth = GetScreenWidth() - 2*offset;
   worldHeight = GetScreenHeight() - 2*offset;
   gravity = 0.25f;
-  activeLines.push_back(Line(Vector2{600, 500}, Vector2{750, 700}));
+  activeLines.push_back(Line(Vector2{0, GetScreenHeight()}, Vector2{GetScreenWidth(), GetScreenHeight()}));
+  activeLines.push_back(Line(Vector2{0, 0}, Vector2{0, GetScreenHeight()}));
+  activeLines.push_back(Line(Vector2{GetScreenWidth(), 0}, Vector2{GetScreenWidth(), GetScreenHeight()}));
+  activeLines.push_back(Line(Vector2{250, 250}, Vector2{600, 600}));
 }
 
 Game::~Game() {
@@ -41,15 +44,23 @@ void Game::draw() {
 
 void Game::checkLineBallCollision() {
  for (auto& b : activeBalls) {
+    b.colliding = false;
     for (auto& l : activeLines) {
       if (std::fabs(l.getNormalVector().x * (b.position.x - l.pos1.x) + l.getNormalVector().y * (b.position.y - l.pos1.y)) < 10) {
-        float minX = std::min(l.pos1.x, l.pos2.x);
-        float maxX = std::max(l.pos1.x, l.pos2.x);
+        float minX = std::min(l.pos1.x, l.pos2.x) - 20;
+        float maxX = std::max(l.pos1.x, l.pos2.x) + 20;
         if (b.position.x >= minX && b.position.x <= maxX) {
-          std::cout << "Contact." << std::endl;
-          Vector2 TempV = b.velocity;
-          b.velocity.x = b.velocity.x - 2 * (b.velocity.x * l.getNormalVector().x + b.velocity.y * l.getNormalVector().y) * l.getNormalVector().x;
-          b.velocity.y = TempV.y - 2 * (TempV.x * l.getNormalVector().x + b.velocity.y * l.getNormalVector().y) * l.getNormalVector().y;
+          b.colliding = true;
+          bool posSign = (l.getNormalVector().x * (b.position.x - l.pos1.x) + l.getNormalVector().y * (b.position.y - l.pos1.y)) < 0;
+          bool velSign = (l.getNormalVector().x * b.velocity.x + l.getNormalVector().y * b.velocity.y) < 0;
+          if (posSign != velSign) {
+            std::cout << "Contact." << std::endl;
+            Vector2 TempV = b.velocity;
+            b.velocity.x = b.velocity.x - 2 * (b.velocity.x * l.getNormalVector().x + b.velocity.y * l.getNormalVector().y) * l.getNormalVector().x;
+            b.velocity.y = TempV.y - 2 * (TempV.x * l.getNormalVector().x + b.velocity.y * l.getNormalVector().y) * l.getNormalVector().y;
+            b.velocity.x *= b.elasticity;
+            b.velocity.y *= b.elasticity;
+          }
         }
       } 
     }

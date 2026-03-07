@@ -1,6 +1,7 @@
 #pragma once
 
 #include <raylib.h>
+#include <cmath>
 
 class Ball{
 private:
@@ -10,6 +11,7 @@ public:
   Vector2 velocity;
   float radius;
   float elasticity;
+  bool colliding;
 
   Ball(Vector2 position, float radius);
   ~Ball();
