@@ -18,7 +18,7 @@ Game::~Game() {
 }
 
 void Game::update() {
-  if (IsMouseButtonPressed(0)) {
+  if (IsMouseButtonDown(0)) {
     activeBalls.push_back(Ball(GetMousePosition(), 5)); 
   }
   if (IsMouseButtonPressed(1)) {
