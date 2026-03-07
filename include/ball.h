@@ -12,6 +12,7 @@ public:
   float radius;
   float elasticity;
   bool colliding;
+  int age;
 
   Ball(Vector2 position, float radius);
   ~Ball();

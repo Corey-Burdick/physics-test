@@ -8,7 +8,7 @@ Game::Game() {
   activeLines.push_back(Line(Vector2{0, GetScreenHeight()}, Vector2{GetScreenWidth(), GetScreenHeight()}));
   activeLines.push_back(Line(Vector2{0, 0}, Vector2{0, GetScreenHeight()}));
   activeLines.push_back(Line(Vector2{GetScreenWidth(), 0}, Vector2{GetScreenWidth(), GetScreenHeight()}));
-  activeLines.push_back(Line(Vector2{250, 250}, Vector2{600, 600}));
+  activeLines.push_back(Line(Vector2{0, 0}, Vector2{GetScreenWidth(), 0}));
   isDrawingLine = false;
   
 }
@@ -30,6 +30,14 @@ void Game::update() {
       isDrawingLine = false;
     }
   } 
+
+  for (auto it = activeBalls.begin(); it != activeBalls.end();) {
+    if (it->age >= 960) {
+      it = activeBalls.erase(it);
+    } else {
+      ++it;
+    }
+  }
 
   for (auto& b : activeBalls) {
     b.update(gravity);

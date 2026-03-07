@@ -4,8 +4,9 @@ Ball::Ball(Vector2 position, float radius) {
   this->position = position;
   this->radius = radius;
   velocity = Vector2{0,0};
-  elasticity = 0.95f;
+  elasticity = 0.8f;
   colliding = false;
+  age = 0;
 }
 
 Ball::~Ball() {
@@ -13,6 +14,7 @@ Ball::~Ball() {
 }
 
 void Ball::update(float gravity) {
+  ++age;
   if (!colliding) {
     velocity.y += gravity;
   }
