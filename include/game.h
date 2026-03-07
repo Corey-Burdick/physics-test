@@ -9,6 +9,8 @@
 class Game {
 private:
   void checkLineBallCollision();
+  bool isDrawingLine;
+  Vector2 lineStart;
 public:
   int offset;
   int worldWidth;

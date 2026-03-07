@@ -9,6 +9,8 @@ Game::Game() {
   activeLines.push_back(Line(Vector2{0, 0}, Vector2{0, GetScreenHeight()}));
   activeLines.push_back(Line(Vector2{GetScreenWidth(), 0}, Vector2{GetScreenWidth(), GetScreenHeight()}));
   activeLines.push_back(Line(Vector2{250, 250}, Vector2{600, 600}));
+  isDrawingLine = false;
+  
 }
 
 Game::~Game() {
@@ -19,7 +21,15 @@ void Game::update() {
   if (IsMouseButtonPressed(0)) {
     activeBalls.push_back(Ball(GetMousePosition(), 5)); 
   }
-  
+  if (IsMouseButtonPressed(1)) {
+    if (isDrawingLine == false) {
+      isDrawingLine = true;
+      lineStart = GetMousePosition();
+    } else {
+      activeLines.push_back(Line(lineStart, GetMousePosition()));
+      isDrawingLine = false;
+    }
+  } 
 
   for (auto& b : activeBalls) {
     b.update(gravity);
@@ -39,6 +49,10 @@ void Game::draw() {
 
   for (auto& l : activeLines) {
     l.draw();
+  }
+
+  if (isDrawingLine) {
+    DrawLineV(lineStart, GetMousePosition(), GREEN);
   }
 }
 
