@@ -39,7 +39,7 @@ void Game::update() {
   }
 
   for (auto it = activeBalls.begin(); it != activeBalls.end();) {
-    if (it->age >= 960) {
+    if (it->age >= 1920) {
       it = activeBalls.erase(it);
     } else {
       ++it;

@@ -3,8 +3,8 @@
 Ball::Ball(Vector2 position, float radius) {
   this->position = position;
   this->radius = radius;
-  velocity = Vector2{0,0};
-  elasticity = 0.8f;
+  velocity = Vector2{0,0.6f};
+  elasticity = 0.99f;
   colliding = false;
   age = 0;
 }
