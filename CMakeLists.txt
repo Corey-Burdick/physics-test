@@ -18,6 +18,16 @@ set(MY_SOURCES
   src/line.cpp
 )
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+if(CMAKE_EXPORT_COMPILE_COMMANDS)
+    file(CREATE_LINK
+      "${CMAKE_BINARY_DIR}/compile_commands.json"
+      "${CMAKE_SOURCE_DIR}/compile_commands.json"
+      SYMBOLIC
+    )
+endif()
+
 add_executable(${CMAKE_PROJECT_NAME} ${MY_SOURCES})
 
 target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC include)

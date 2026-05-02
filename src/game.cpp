@@ -5,10 +5,10 @@ Game::Game() {
   worldWidth = GetScreenWidth() - 2*offset;
   worldHeight = GetScreenHeight() - 2*offset;
   gravity = 0.25f;
-  activeLines.push_back(Line(Vector2{0, GetScreenHeight()}, Vector2{GetScreenWidth(), GetScreenHeight()}));
-  activeLines.push_back(Line(Vector2{0, 0}, Vector2{0, GetScreenHeight()}));
-  activeLines.push_back(Line(Vector2{GetScreenWidth(), 0}, Vector2{GetScreenWidth(), GetScreenHeight()}));
-  activeLines.push_back(Line(Vector2{0, 0}, Vector2{GetScreenWidth(), 0}));
+  activeLines.push_back(Line(Vector2{0, (float)GetScreenHeight()}, Vector2{(float)GetScreenWidth(), (float)GetScreenHeight()}));
+  activeLines.push_back(Line(Vector2{0, 0}, Vector2{0, (float)GetScreenHeight()}));
+  activeLines.push_back(Line(Vector2{(float)GetScreenWidth(), 0}, Vector2{(float)GetScreenWidth(), (float)GetScreenHeight()}));
+  activeLines.push_back(Line(Vector2{0, 0}, Vector2{(float)GetScreenWidth(), 0}));
   isDrawingLine = false;
   
 }
@@ -32,10 +32,10 @@ void Game::update() {
   } 
   if (IsKeyPressed(KEY_C)) {
     activeLines.clear();
-    activeLines.push_back(Line(Vector2{0, GetScreenHeight()}, Vector2{GetScreenWidth(), GetScreenHeight()}));
-    activeLines.push_back(Line(Vector2{0, 0}, Vector2{0, GetScreenHeight()}));
-    activeLines.push_back(Line(Vector2{GetScreenWidth(), 0}, Vector2{GetScreenWidth(), GetScreenHeight()}));
-    activeLines.push_back(Line(Vector2{0, 0}, Vector2{GetScreenWidth(), 0}));
+    activeLines.push_back(Line(Vector2{0, (float)GetScreenHeight()}, Vector2{(float)GetScreenWidth(), (float)GetScreenHeight()}));
+    activeLines.push_back(Line(Vector2{0, 0}, Vector2{0, (float)GetScreenHeight()}));
+    activeLines.push_back(Line(Vector2{(float)GetScreenWidth(), 0}, Vector2{(float)GetScreenWidth(), (float)GetScreenHeight()}));
+    activeLines.push_back(Line(Vector2{0, 0}, Vector2{(float)GetScreenWidth(), 0}));
   }
 
   for (auto it = activeBalls.begin(); it != activeBalls.end();) {
